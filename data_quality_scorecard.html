@@ -15,296 +15,255 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .container {
-    max-width: 900px;
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* ---- HEADER ---- */
+  .header { text-align: center; margin-bottom: 40px; }
+  .header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header .subtitle { font-size: 15px; color: #6e6e73; }
+
+  /* ---- EXECUTIVE SUMMARY ROW ---- */
+  .exec-summary {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    margin-bottom: 32px;
+    align-items: center;
+  }
+
+  .grade-ring {
+    position: relative;
+    width: 140px;
+    height: 140px;
     margin: 0 auto;
   }
 
-  .header {
+  .grade-ring svg { transform: rotate(-90deg); }
+
+  .grade-ring-bg { fill: none; stroke: #f0f0f2; stroke-width: 10; }
+  .grade-ring-fill { fill: none; stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+
+  .grade-ring-label {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     text-align: center;
-    margin-bottom: 48px;
   }
+  .grade-ring-label .grade-letter { font-size: 38px; font-weight: 700; color: #e5451f; }
+  .grade-ring-label .grade-sub { font-size: 11px; color: #6e6e73; margin-top: -2px; }
 
-  .header h1 {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 8px;
-  }
+  .exec-text h2 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  .exec-text p { font-size: 14px; color: #6e6e73; line-height: 1.6; margin-bottom: 12px; }
 
-  .header .subtitle {
-    font-size: 15px;
-    color: #6e6e73;
-  }
-
-  .overall-grade {
+  .exec-kpis {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 24px;
-    margin-bottom: 48px;
-    padding: 32px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    flex-wrap: wrap;
   }
 
-  .overall-grade .grade-circle {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    font-weight: 700;
-    color: white;
-    background: linear-gradient(135deg, #ff6b35, #e5451f);
+  .exec-kpi {
+    text-align: center;
+    min-width: 100px;
   }
+  .exec-kpi .kpi-value { font-size: 28px; font-weight: 700; line-height: 1; }
+  .exec-kpi .kpi-value.red { color: #ff3b30; }
+  .exec-kpi .kpi-value.amber { color: #ff9500; }
+  .exec-kpi .kpi-value.green { color: #34c759; }
+  .exec-kpi .kpi-label { font-size: 11px; color: #6e6e73; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
 
-  .overall-grade .grade-detail h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .overall-grade .grade-detail p {
-    font-size: 14px;
-    color: #6e6e73;
-    max-width: 400px;
-    line-height: 1.5;
-  }
-
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-
-  @media (max-width: 640px) {
-    .cards { grid-template-columns: 1fr; }
-  }
+  /* ---- METRIC CARDS ---- */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  @media (max-width: 640px) { .cards { grid-template-columns: 1fr; } }
 
   .card {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
+    background: white; border-radius: 16px; padding: 24px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-  }
-
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .card.grade-a::before { background: #34c759; }
   .card.grade-b::before { background: #5ac8fa; }
   .card.grade-c::before { background: #ff9500; }
   .card.grade-d::before { background: #ff6b35; }
   .card.grade-f::before { background: #ff3b30; }
 
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 16px;
-  }
-
-  .card-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1d1d1f;
-    line-height: 1.3;
-  }
-
-  .card-grade {
-    font-size: 20px;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 8px;
-    flex-shrink: 0;
-    margin-left: 12px;
-  }
-
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .card-title { font-size: 15px; font-weight: 600; line-height: 1.3; }
+  .card-grade { font-size: 20px; font-weight: 700; padding: 2px 10px; border-radius: 8px; flex-shrink: 0; margin-left: 12px; }
   .grade-a .card-grade { background: #e8f8ed; color: #1b7d36; }
   .grade-b .card-grade { background: #e5f5fc; color: #0071a4; }
   .grade-c .card-grade { background: #fff4e5; color: #a35d00; }
   .grade-d .card-grade { background: #fff0eb; color: #c4350a; }
   .grade-f .card-grade { background: #ffe5e5; color: #d70015; }
 
-  .metric-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #f0f0f2;
-  }
-
-  .metric-row:last-child {
-    border-bottom: none;
-  }
-
-  .metric-label {
-    font-size: 13px;
-    color: #6e6e73;
-  }
-
-  .metric-value {
-    font-size: 13px;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-
+  .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f0f0f2; }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-label { font-size: 13px; color: #6e6e73; }
+  .metric-value { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
   .metric-value.bad { color: #ff3b30; }
   .metric-value.warn { color: #ff9500; }
   .metric-value.good { color: #34c759; }
 
-  .progress-bar {
-    width: 100%;
-    height: 6px;
-    background: #f0f0f2;
-    border-radius: 3px;
-    margin-top: 12px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.6s ease;
-  }
-
+  .progress-bar { width: 100%; height: 6px; background: #f0f0f2; border-radius: 3px; margin-top: 12px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; }
   .grade-a .progress-fill { background: #34c759; }
   .grade-b .progress-fill { background: #5ac8fa; }
   .grade-c .progress-fill { background: #ff9500; }
   .grade-d .progress-fill { background: #ff6b35; }
   .grade-f .progress-fill { background: #ff3b30; }
 
-  .summary-table {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    margin-bottom: 48px;
+  /* ---- ROADMAP ---- */
+  .roadmap {
+    background: white; border-radius: 16px; padding: 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 32px;
   }
+  .roadmap h3 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .roadmap .roadmap-sub { font-size: 13px; color: #6e6e73; margin-bottom: 24px; }
 
-  .summary-table h3 {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 16px;
+  .phase { margin-bottom: 32px; }
+  .phase:last-child { margin-bottom: 0; }
+
+  .phase-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    padding-bottom: 12px; border-bottom: 2px solid #f0f0f2;
   }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
+  .phase-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    color: white; flex-shrink: 0;
   }
+  .phase-badge.p1 { background: linear-gradient(135deg, #ff3b30, #ff6b35); }
+  .phase-badge.p2 { background: linear-gradient(135deg, #ff9500, #ffb800); }
+  .phase-badge.p3 { background: linear-gradient(135deg, #5ac8fa, #007aff); }
 
-  thead th {
-    text-align: left;
-    font-size: 12px;
-    font-weight: 600;
-    color: #6e6e73;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 8px 12px;
-    border-bottom: 2px solid #e5e5ea;
-  }
+  .phase-title { font-size: 16px; font-weight: 600; }
+  .phase-timeline { font-size: 12px; color: #6e6e73; margin-left: auto; flex-shrink: 0; }
 
-  thead th:last-child,
-  tbody td:last-child {
-    text-align: center;
-  }
-
-  tbody td {
-    padding: 12px;
-    font-size: 14px;
-    border-bottom: 1px solid #f0f0f2;
-    vertical-align: middle;
-  }
-
-  tbody tr:last-child td {
-    border-bottom: none;
-  }
-
-  .grade-badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 13px;
-  }
-
-  .badge-a { background: #e8f8ed; color: #1b7d36; }
-  .badge-b { background: #e5f5fc; color: #0071a4; }
-  .badge-c { background: #fff4e5; color: #a35d00; }
-  .badge-d { background: #fff0eb; color: #c4350a; }
-  .badge-f { background: #ffe5e5; color: #d70015; }
-
-  .recommendation {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    margin-bottom: 16px;
-  }
-
-  .recommendation h3 {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .rec-item {
-    display: flex;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f2;
-  }
-
-  .rec-item:last-child { border-bottom: none; }
-
-  .rec-priority {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
+  .workstream {
+    display: grid; grid-template-columns: 1fr 120px 120px 100px;
+    gap: 0; border-bottom: 1px solid #f0f0f2; padding: 12px 0;
     align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    margin-top: 2px;
   }
+  .workstream:last-child { border-bottom: none; }
 
-  .p-critical { background: #ff3b30; }
-  .p-high { background: #ff9500; }
-  .p-medium { background: #5ac8fa; }
+  .ws-name { font-size: 14px; font-weight: 500; }
+  .ws-name small { display: block; font-size: 12px; color: #6e6e73; font-weight: 400; margin-top: 2px; }
+  .ws-owner { font-size: 12px; color: #6e6e73; text-align: center; }
+  .ws-duration { font-size: 12px; color: #6e6e73; text-align: center; }
 
-  .rec-text strong {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 2px;
-  }
-
-  .rec-text span {
-    font-size: 13px;
-    color: #6e6e73;
-    line-height: 1.5;
-  }
-
-  .footer {
+  .ws-status {
     text-align: center;
-    padding: 24px;
-    font-size: 12px;
-    color: #aeaeb2;
+  }
+  .status-pill {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .status-not-started { background: #f0f0f2; color: #6e6e73; }
+  .status-in-progress { background: #fff4e5; color: #a35d00; }
+  .status-done { background: #e8f8ed; color: #1b7d36; }
+  .status-blocked { background: #ffe5e5; color: #d70015; }
+
+  .ws-header {
+    display: grid; grid-template-columns: 1fr 120px 120px 100px;
+    gap: 0; padding: 0 0 8px 0; border-bottom: 2px solid #e5e5ea;
+    margin-bottom: 4px;
+  }
+  .ws-header span {
+    font-size: 11px; font-weight: 600; color: #aeaeb2;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .ws-header span:not(:first-child) { text-align: center; }
+
+  /* ---- GANTT-STYLE TIMELINE ---- */
+  .timeline-section {
+    background: white; border-radius: 16px; padding: 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 32px;
+  }
+  .timeline-section h3 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .timeline-section .timeline-sub { font-size: 13px; color: #6e6e73; margin-bottom: 24px; }
+
+  .gantt { width: 100%; }
+  .gantt-header {
+    display: grid; grid-template-columns: 200px repeat(8, 1fr);
+    border-bottom: 2px solid #e5e5ea; padding-bottom: 8px; margin-bottom: 4px;
+  }
+  .gantt-header span {
+    font-size: 11px; font-weight: 600; color: #aeaeb2;
+    text-transform: uppercase; letter-spacing: 0.3px; text-align: center;
+  }
+  .gantt-header span:first-child { text-align: left; }
+
+  .gantt-row {
+    display: grid; grid-template-columns: 200px repeat(8, 1fr);
+    padding: 8px 0; border-bottom: 1px solid #f5f5f7;
+    align-items: center; min-height: 40px;
+  }
+  .gantt-row:last-child { border-bottom: none; }
+
+  .gantt-label { font-size: 13px; font-weight: 500; padding-right: 8px; }
+  .gantt-label small { display: block; font-size: 11px; color: #aeaeb2; font-weight: 400; }
+
+  .gantt-cell { position: relative; height: 24px; }
+  .gantt-bar {
+    position: absolute; top: 4px; height: 16px; border-radius: 8px;
+    left: 4px; right: 4px;
+  }
+  .bar-critical { background: linear-gradient(90deg, #ff3b30, #ff6b35); }
+  .bar-high { background: linear-gradient(90deg, #ff9500, #ffb800); }
+  .bar-medium { background: linear-gradient(90deg, #5ac8fa, #007aff); }
+  .bar-done { background: #34c759; }
+
+  .milestone {
+    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+    width: 16px; height: 16px; background: #1d1d1f; border-radius: 3px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  /* ---- IMPACT PROJECTION ---- */
+  .impact-section {
+    background: white; border-radius: 16px; padding: 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 32px;
+  }
+  .impact-section h3 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .impact-section .impact-sub { font-size: 13px; color: #6e6e73; margin-bottom: 24px; }
+
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media (max-width: 640px) { .impact-grid { grid-template-columns: 1fr; } }
+
+  .impact-card {
+    border: 1px solid #e5e5ea; border-radius: 12px; padding: 20px;
+    text-align: center;
+  }
+  .impact-card .impact-before {
+    font-size: 13px; color: #aeaeb2; text-transform: uppercase; letter-spacing: 0.3px;
+    margin-bottom: 4px;
+  }
+  .impact-card .impact-from {
+    font-size: 24px; font-weight: 700; color: #ff3b30;
+  }
+  .impact-card .impact-arrow {
+    font-size: 20px; color: #aeaeb2; margin: 8px 0;
+  }
+  .impact-card .impact-after {
+    font-size: 13px; color: #aeaeb2; text-transform: uppercase; letter-spacing: 0.3px;
+    margin-bottom: 4px;
+  }
+  .impact-card .impact-to {
+    font-size: 24px; font-weight: 700; color: #34c759;
+  }
+  .impact-card .impact-metric {
+    font-size: 12px; color: #6e6e73; margin-top: 8px; line-height: 1.4;
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    text-align: center; padding: 24px;
+    font-size: 12px; color: #aeaeb2;
   }
 </style>
 </head>
@@ -312,42 +271,63 @@
 
 <div class="container">
 
+  <!-- HEADER -->
   <div class="header">
     <h1>Data Quality Scorecard</h1>
-    <div class="subtitle">Cofertility Data Infrastructure Audit &middot; Sep 2024 to Feb 2025</div>
+    <div class="subtitle">Cofertility Data Infrastructure &middot; Q3 2024 to Q1 2025 &middot; Executive Summary</div>
   </div>
 
-  <div class="overall-grade">
-    <div class="grade-circle">D+</div>
-    <div class="grade-detail">
-      <h2>Overall Data Health: Needs Work</h2>
-      <p>The pipeline produces data, but attribution gaps, schema inconsistencies, and orphan records undermine trust in every downstream metric. Fix instrumentation before optimizing spend.</p>
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="exec-summary">
+    <div class="grade-ring">
+      <svg viewBox="0 0 140 140">
+        <circle class="grade-ring-bg" cx="70" cy="70" r="58"/>
+        <!-- 35% fill: circumference = 364.4, offset = 364.4 * 0.65 = 236.9 -->
+        <circle class="grade-ring-fill" cx="70" cy="70" r="58"
+                stroke="#e5451f" stroke-dasharray="364.4" stroke-dashoffset="236.9"/>
+      </svg>
+      <div class="grade-ring-label">
+        <div class="grade-letter">D+</div>
+        <div class="grade-sub">35 / 100</div>
+      </div>
+    </div>
+
+    <div class="exec-text">
+      <h2>Data Infrastructure Health: Needs Immediate Attention</h2>
+      <p>The pipeline produces data, but attribution gaps, schema drift, and orphan records undermine every downstream metric. Marketing cannot trust channel reporting, and 26% of conversions are either lost or unattributable. Instrumentation fixes must precede any spend optimization.</p>
+
+      <div class="exec-kpis">
+        <div class="exec-kpi">
+          <div class="kpi-value red">9</div>
+          <div class="kpi-label">Lost or Unattributable<br>Conversions</div>
+        </div>
+        <div class="exec-kpi">
+          <div class="kpi-value red">35%</div>
+          <div class="kpi-label">Sessions Missing<br>UTM Attribution</div>
+        </div>
+        <div class="exec-kpi">
+          <div class="kpi-value red">3</div>
+          <div class="kpi-label">Inconsistent<br>Call Sites</div>
+        </div>
+        <div class="exec-kpi">
+          <div class="kpi-value amber">$38.9K</div>
+          <div class="kpi-label">Spend Allocated<br>on Unreliable Data</div>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- METRIC CARDS -->
   <div class="cards">
-
     <div class="card grade-b">
       <div class="card-header">
         <div class="card-title">Session-Event Join Rate</div>
         <div class="card-grade">B</div>
       </div>
-      <div class="metric-row">
-        <span class="metric-label">Total sessions with events</span>
-        <span class="metric-value">~95%</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Orphan event sessions</span>
-        <span class="metric-value bad">6 (sess_orphan_001 to 006)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Conversions lost</span>
-        <span class="metric-value bad">6 unattributable</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Target</span>
-        <span class="metric-value good">&ge;99.5%</span>
-      </div>
+      <div class="metric-row"><span class="metric-label">Sessions matched</span><span class="metric-value">~95%</span></div>
+      <div class="metric-row"><span class="metric-label">Orphan sessions</span><span class="metric-value bad">6 sessions with events but no record</span></div>
+      <div class="metric-row"><span class="metric-label">Conversions affected</span><span class="metric-value bad">6 unattributable signups</span></div>
+      <div class="metric-row"><span class="metric-label">Target</span><span class="metric-value good">&ge; 99.5%</span></div>
       <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
     </div>
 
@@ -356,22 +336,10 @@
         <div class="card-title">UTM Parameter Coverage</div>
         <div class="card-grade">D</div>
       </div>
-      <div class="metric-row">
-        <span class="metric-label">Sessions with UTM source</span>
-        <span class="metric-value warn">65%</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">NULL UTM sessions</span>
-        <span class="metric-value bad">42 of 120 (35%)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Trend</span>
-        <span class="metric-value warn">Stable (not improving)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Target</span>
-        <span class="metric-value good">&ge;90%</span>
-      </div>
+      <div class="metric-row"><span class="metric-label">Sessions with UTM</span><span class="metric-value warn">65%</span></div>
+      <div class="metric-row"><span class="metric-label">NULL UTM sessions</span><span class="metric-value bad">42 of 120 (35%)</span></div>
+      <div class="metric-row"><span class="metric-label">Trend</span><span class="metric-value warn">Flat across 6 months</span></div>
+      <div class="metric-row"><span class="metric-label">Target</span><span class="metric-value good">&ge; 90%</span></div>
       <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
     </div>
 
@@ -380,46 +348,21 @@
         <div class="card-title">Campaign Name Consistency</div>
         <div class="card-grade">F</div>
       </div>
-      <div class="metric-row">
-        <span class="metric-label">Distinct raw variants</span>
-        <span class="metric-value bad">3 formats for same campaign</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Formats found</span>
-        <span class="metric-value">snake, kebab, PascalCase</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Impact</span>
-        <span class="metric-value bad">Splits 1 campaign into 3 rows</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Target</span>
-        <span class="metric-value good">1 standard (snake_case)</span>
-      </div>
+      <div class="metric-row"><span class="metric-label">Format variants</span><span class="metric-value bad">3 (snake, kebab, Pascal)</span></div>
+      <div class="metric-row"><span class="metric-label">Impact</span><span class="metric-value bad">Splits 1 campaign into 3 rows</span></div>
+      <div class="metric-row"><span class="metric-label">Target</span><span class="metric-value good">1 standard (snake_case)</span></div>
       <div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div>
     </div>
 
     <div class="card grade-f">
       <div class="card-header">
-        <div class="card-title">signup_completed Schema Uniformity</div>
+        <div class="card-title">signup_completed Schema</div>
         <div class="card-grade">F</div>
       </div>
-      <div class="metric-row">
-        <span class="metric-label">Call sites firing event</span>
-        <span class="metric-value bad">3 (should be 1)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">call_site_a (correct)</span>
-        <span class="metric-value good">29 events, full schema</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">call_site_b (partial)</span>
-        <span class="metric-value warn">7 events, missing plan/source</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">call_site_c (broken)</span>
-        <span class="metric-value bad">3 events, NULL user_id</span>
-      </div>
+      <div class="metric-row"><span class="metric-label">Call sites</span><span class="metric-value bad">3 (should be 1)</span></div>
+      <div class="metric-row"><span class="metric-label">call_site_a</span><span class="metric-value good">29 events, complete</span></div>
+      <div class="metric-row"><span class="metric-label">call_site_b</span><span class="metric-value warn">7 events, partial schema</span></div>
+      <div class="metric-row"><span class="metric-label">call_site_c</span><span class="metric-value bad">3 events, NULL user_id (lost)</span></div>
       <div class="progress-bar"><div class="progress-fill" style="width:10%"></div></div>
     </div>
 
@@ -428,150 +371,307 @@
         <div class="card-title">Conversion Deduplication</div>
         <div class="card-grade">B+</div>
       </div>
-      <div class="metric-row">
-        <span class="metric-label">Unique converted users</span>
-        <span class="metric-value">34</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Raw conversion rows</span>
-        <span class="metric-value warn">36 (2 duplicates)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Duplicate rate</span>
-        <span class="metric-value warn">5.6% (usr_136, usr_143)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Target</span>
-        <span class="metric-value good">0% (no retries in conversions)</span>
-      </div>
+      <div class="metric-row"><span class="metric-label">Unique users</span><span class="metric-value">34</span></div>
+      <div class="metric-row"><span class="metric-label">Raw rows</span><span class="metric-value warn">36 (2 retries)</span></div>
+      <div class="metric-row"><span class="metric-label">Target</span><span class="metric-value good">0% duplicate rate</span></div>
       <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
     </div>
 
     <div class="card grade-d">
       <div class="card-header">
-        <div class="card-title">plan_type Data Integrity</div>
+        <div class="card-title">plan_type Integrity</div>
         <div class="card-grade">D</div>
       </div>
-      <div class="metric-row">
-        <span class="metric-label">Distinct raw values</span>
-        <span class="metric-value bad">3 (split, Split, SPLIT)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Normalized value</span>
-        <span class="metric-value good">split (after LOWER)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Missing plan_type</span>
-        <span class="metric-value bad">10 events (call_site_b + c)</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">Target</span>
-        <span class="metric-value good">1 canonical enum, always present</span>
-      </div>
+      <div class="metric-row"><span class="metric-label">Casing variants</span><span class="metric-value bad">3 (split, Split, SPLIT)</span></div>
+      <div class="metric-row"><span class="metric-label">Missing values</span><span class="metric-value bad">10 events</span></div>
+      <div class="metric-row"><span class="metric-label">Target</span><span class="metric-value good">1 canonical enum, 0% null</span></div>
       <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
     </div>
-
   </div>
 
-  <div class="summary-table">
-    <h3>Scorecard Summary</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Metric</th>
-          <th>Current State</th>
-          <th>Target</th>
-          <th>Grade</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Session-event join rate</td>
-          <td>~95% (6 orphan sessions)</td>
-          <td>&ge;99.5%</td>
-          <td><span class="grade-badge badge-b">B</span></td>
-        </tr>
-        <tr>
-          <td>UTM parameter coverage</td>
-          <td>65% (42/120 sessions NULL)</td>
-          <td>&ge;90%</td>
-          <td><span class="grade-badge badge-d">D</span></td>
-        </tr>
-        <tr>
-          <td>Campaign name consistency</td>
-          <td>3 format variants</td>
-          <td>1 standard (snake_case)</td>
-          <td><span class="grade-badge badge-f">F</span></td>
-        </tr>
-        <tr>
-          <td>signup_completed schema</td>
-          <td>3 call sites, inconsistent properties</td>
-          <td>1 canonical call site</td>
-          <td><span class="grade-badge badge-f">F</span></td>
-        </tr>
-        <tr>
-          <td>Conversion deduplication</td>
-          <td>94.4% clean (2 retry dupes)</td>
-          <td>100%</td>
-          <td><span class="grade-badge badge-b">B+</span></td>
-        </tr>
-        <tr>
-          <td>plan_type integrity</td>
-          <td>3 casing variants, 10 missing</td>
-          <td>1 enum, always present</td>
-          <td><span class="grade-badge badge-d">D</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- 90-DAY ROADMAP -->
+  <div class="roadmap">
+    <h3>90-Day Remediation Roadmap</h3>
+    <div class="roadmap-sub">Phased approach: stop the bleeding first, then build the foundation, then optimize.</div>
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge p1">Phase 1</span>
+        <span class="phase-title">Stop the Bleeding</span>
+        <span class="phase-timeline">Weeks 1 to 3</span>
+      </div>
+      <div class="ws-header">
+        <span>Workstream</span>
+        <span>Owner</span>
+        <span>Duration</span>
+        <span>Status</span>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Consolidate signup_completed to 1 call site<small>Redirect call_site_b and call_site_c to canonical backend endpoint</small></div>
+        <div class="ws-owner">Engineering</div>
+        <div class="ws-duration">1 week</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Add user_id non-null validation to signup event<small>CI/CD schema check: block deploys that fire signup with null user_id</small></div>
+        <div class="ws-owner">Engineering</div>
+        <div class="ws-duration">2 days</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Deploy dbt staging models with normalization<small>LOWER(), REPLACE(), dedup in stg_conversions. Immediate data layer fix.</small></div>
+        <div class="ws-owner">Analytics Eng.</div>
+        <div class="ws-duration">3 days</div>
+        <div class="ws-status"><span class="status-pill status-done">Done</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Add dbt tests: not_null, accepted_values, relationships<small>Automated alerting when data quality regresses</small></div>
+        <div class="ws-owner">Analytics Eng.</div>
+        <div class="ws-duration">2 days</div>
+        <div class="ws-status"><span class="status-pill status-done">Done</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge p2">Phase 2</span>
+        <span class="phase-title">Build the Foundation</span>
+        <span class="phase-timeline">Weeks 4 to 7</span>
+      </div>
+      <div class="ws-header">
+        <span>Workstream</span>
+        <span>Owner</span>
+        <span>Duration</span>
+        <span>Status</span>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Implement server-side UTM persistence<small>First-party cookie capture at first redirect hop. Survives ad blockers and cross-domain.</small></div>
+        <div class="ws-owner">Engineering</div>
+        <div class="ws-duration">2 weeks</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Reconcile session creation (client vs. server)<small>Fix race condition between Amplitude SDK and server-side session writer</small></div>
+        <div class="ws-owner">Engineering</div>
+        <div class="ws-duration">1 week</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Deploy UTM builder tool for marketing<small>Enforced snake_case naming, pre-populated campaign templates</small></div>
+        <div class="ws-owner">Analytics Eng.</div>
+        <div class="ws-duration">3 days</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Publish event taxonomy (tracking plan)<small>YAML or Avo spec covering all events, required properties, allowed values</small></div>
+        <div class="ws-owner">Analytics Eng.</div>
+        <div class="ws-duration">1 week</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+      <div class="phase-header">
+        <span class="phase-badge p3">Phase 3</span>
+        <span class="phase-title">Optimize &amp; Monitor</span>
+        <span class="phase-timeline">Weeks 8 to 12</span>
+      </div>
+      <div class="ws-header">
+        <span>Workstream</span>
+        <span>Owner</span>
+        <span>Duration</span>
+        <span>Status</span>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Build fct_channel_performance mart<small>Canonical CAC/CPC/conversion rate by channel by month for Metabase</small></div>
+        <div class="ws-owner">Analytics Eng.</div>
+        <div class="ws-duration">1 week</div>
+        <div class="ws-status"><span class="status-pill status-done">Done</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Deploy weekly data quality monitoring dashboard<small>Automated scorecard: orphan rate, UTM coverage, schema drift</small></div>
+        <div class="ws-owner">Analytics Eng.</div>
+        <div class="ws-duration">1 week</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Re-run CAC analysis on clean data<small>With instrumentation fixed, re-evaluate channel efficiency with complete attribution</small></div>
+        <div class="ws-owner">Analytics Eng.</div>
+        <div class="ws-duration">2 days</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+      <div class="workstream">
+        <div class="ws-name">Meta holdback test design<small>Geo-lift or holdback experiment to measure Meta's incremental contribution</small></div>
+        <div class="ws-owner">Growth + AE</div>
+        <div class="ws-duration">2 weeks</div>
+        <div class="ws-status"><span class="status-pill status-not-started">Not Started</span></div>
+      </div>
+    </div>
   </div>
 
-  <div class="recommendation">
-    <h3>Prioritized Remediation Plan</h3>
+  <!-- GANTT TIMELINE -->
+  <div class="timeline-section">
+    <h3>Timeline View</h3>
+    <div class="timeline-sub">Visual overview of the 90-day remediation plan.</div>
 
-    <div class="rec-item">
-      <div class="rec-priority p-critical">1</div>
-      <div class="rec-text">
-        <strong>Consolidate signup_completed to one call site</strong>
-        <span>call_site_c loses 3 users entirely (NULL user_id). call_site_b omits plan and source. Move all signup_completed firing to the backend, post-authentication. Estimated impact: recover 3 lost conversions, gain consistent properties on all 39 events.</span>
+    <div class="gantt">
+      <div class="gantt-header">
+        <span></span>
+        <span>Wk 1</span><span>Wk 2</span><span>Wk 3</span><span>Wk 4</span>
+        <span>Wk 6</span><span>Wk 8</span><span>Wk 10</span><span>Wk 12</span>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Consolidate signup event<small>Engineering</small></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-critical"></div></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">dbt staging + tests<small>Analytics Eng.</small></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-done"></div></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Server-side UTM capture<small>Engineering</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-high"></div></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-high"></div></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Fix session reconciliation<small>Engineering</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-high"></div></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Event taxonomy + UTM builder<small>Analytics Eng.</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-high"></div></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-high"></div></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Channel performance mart<small>Analytics Eng.</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-done"></div></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">DQ monitoring dashboard<small>Analytics Eng.</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-medium"></div></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Re-run CAC on clean data<small>Analytics Eng.</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-medium"></div></div>
+        <div class="gantt-cell"></div>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Meta holdback test<small>Growth + AE</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-medium"></div></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-medium"></div></div>
       </div>
     </div>
+  </div>
 
-    <div class="rec-item">
-      <div class="rec-priority p-critical">2</div>
-      <div class="rec-text">
-        <strong>Fix UTM parameter persistence</strong>
-        <span>35% of sessions have no attribution data. Implement server-side UTM capture at the first redirect hop and persist in a first-party cookie. Audit ad platform destination URLs for UTM stripping. Estimated impact: reduce NULL-UTM rate from 35% to under 10%.</span>
+  <!-- PROJECTED IMPACT -->
+  <div class="impact-section">
+    <h3>Projected Impact After Remediation</h3>
+    <div class="impact-sub">What changes when the 90-day plan is complete.</div>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-before">Today</div>
+        <div class="impact-from">26%</div>
+        <div class="impact-arrow">&darr;</div>
+        <div class="impact-after">After</div>
+        <div class="impact-to">&lt; 3%</div>
+        <div class="impact-metric">Conversions lost or<br>unattributable</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-before">Today</div>
+        <div class="impact-from">65%</div>
+        <div class="impact-arrow">&darr;</div>
+        <div class="impact-after">After</div>
+        <div class="impact-to">&ge; 90%</div>
+        <div class="impact-metric">Sessions with<br>UTM attribution</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-before">Today</div>
+        <div class="impact-from">D+</div>
+        <div class="impact-arrow">&darr;</div>
+        <div class="impact-after">After</div>
+        <div class="impact-to">B+</div>
+        <div class="impact-metric">Overall data<br>quality score</div>
       </div>
     </div>
-
-    <div class="rec-item">
-      <div class="rec-priority p-high">3</div>
-      <div class="rec-text">
-        <strong>Reconcile session creation (client vs. server)</strong>
-        <span>6 orphan sessions have events but no session record. Investigate the race condition between Amplitude's client SDK and the server-side session writer. Add a dbt relationships test with a warn threshold. Estimated impact: 6 conversions become attributable.</span>
-      </div>
-    </div>
-
-    <div class="rec-item">
-      <div class="rec-priority p-high">4</div>
-      <div class="rec-text">
-        <strong>Enforce campaign naming convention</strong>
-        <span>Deploy a UTM builder tool for the marketing team. Normalize existing data in the dbt staging layer with LOWER() and REPLACE(). Add an accepted_values test on utm_campaign. Estimated impact: eliminates 3-way campaign fragmentation in all dashboards.</span>
-      </div>
-    </div>
-
-    <div class="rec-item">
-      <div class="rec-priority p-medium">5</div>
-      <div class="rec-text">
-        <strong>Deduplicate conversions at the source</strong>
-        <span>Backend retry logic should be idempotent. If signup_completed fires twice for the same user (as with usr_136 and usr_143), the conversions table should not insert a second row. Add a unique constraint on user_id. Interim fix: dedup in dbt staging.</span>
-      </div>
-    </div>
-
   </div>
 
   <div class="footer">
-    Cofertility Data Quality Scorecard &middot; Prepared by Cansu Kaya &middot; April 2025
+    Cofertility Data Quality Scorecard &middot; Prepared by Cansu Kaya &middot; April 2025<br>
+    <span style="font-size:11px; margin-top:4px; display:inline-block;">
+      Working dbt project: <a href="https://github.com/satine7/cofertility-dbt-project" style="color:#007aff; text-decoration:none;">github.com/satine7/cofertility-dbt-project</a>
+    </span>
   </div>
 
 </div>
