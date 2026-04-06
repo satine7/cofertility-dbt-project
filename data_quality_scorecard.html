@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cofertility: Can We Trust Our Numbers?</title>
+<title>Cofertility: Data Quality Action Plan</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -11,14 +11,14 @@
     background: #f5f5f7; color: #1d1d1f;
     padding: 48px 20px; -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 800px; margin: 0 auto; }
+  .container { max-width: 880px; margin: 0 auto; }
 
   /* HEADER */
   .header { text-align: center; margin-bottom: 48px; }
   .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; }
   .header .sub { font-size: 14px; color: #86868b; }
 
-  /* HERO STAT */
+  /* HERO */
   .hero {
     background: white; border-radius: 20px; padding: 40px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -26,15 +26,11 @@
   }
   .hero .big-number { font-size: 72px; font-weight: 700; color: #ff3b30; line-height: 1; }
   .hero .big-label { font-size: 18px; color: #1d1d1f; margin-top: 8px; font-weight: 500; }
-  .hero .big-context { font-size: 14px; color: #86868b; margin-top: 8px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+  .hero .big-context { font-size: 14px; color: #86868b; margin-top: 8px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.5; }
 
-  /* THREE-STAT ROW */
-  .stat-row {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    margin-bottom: 40px;
-  }
+  /* STAT ROW */
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
   @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr; } }
-
   .stat-card {
     background: white; border-radius: 16px; padding: 28px 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center;
@@ -44,95 +40,215 @@
   .stat-card .stat-value.amber { color: #ff9500; }
   .stat-card .stat-label { font-size: 13px; color: #86868b; margin-top: 8px; line-height: 1.4; }
 
-  /* SECTION HEADERS */
-  .section-title {
-    font-size: 22px; font-weight: 700; margin-bottom: 6px; margin-top: 16px;
-  }
-  .section-sub {
-    font-size: 14px; color: #86868b; margin-bottom: 24px; line-height: 1.5;
-  }
+  /* SECTION */
+  .section-title { font-size: 22px; font-weight: 700; margin-bottom: 6px; margin-top: 16px; }
+  .section-sub { font-size: 14px; color: #86868b; margin-bottom: 24px; line-height: 1.5; }
 
   /* PROBLEM CARDS */
   .problems { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
-
   .problem {
     background: white; border-radius: 16px; padding: 24px 28px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    display: grid; grid-template-columns: 56px 1fr 140px; gap: 16px;
-    align-items: center;
+    display: grid; grid-template-columns: 56px 1fr 140px; gap: 16px; align-items: center;
   }
-  @media (max-width: 600px) {
-    .problem { grid-template-columns: 1fr; text-align: center; }
-  }
-
+  @media (max-width: 600px) { .problem { grid-template-columns: 1fr; text-align: center; } }
   .problem-icon {
     width: 48px; height: 48px; border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
   }
   .icon-red { background: #ffe5e5; }
   .icon-amber { background: #fff4e5; }
-
   .problem-text h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
   .problem-text p { font-size: 13px; color: #86868b; line-height: 1.5; }
-
-  .problem-cost {
-    text-align: right; flex-shrink: 0;
-  }
+  .problem-cost { text-align: right; flex-shrink: 0; }
   @media (max-width: 600px) { .problem-cost { text-align: center; } }
   .problem-cost .cost-value { font-size: 22px; font-weight: 700; color: #ff3b30; }
   .problem-cost .cost-label { font-size: 11px; color: #86868b; text-transform: uppercase; letter-spacing: 0.3px; }
 
-  /* FIX PLAN */
-  .fixes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
-
-  .fix {
-    background: white; border-radius: 16px; padding: 24px 28px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    display: grid; grid-template-columns: 40px 1fr 100px; gap: 16px;
-    align-items: center;
+  /* ---- INTERACTIVE ROADMAP ---- */
+  .roadmap-container {
+    background: white; border-radius: 20px; padding: 36px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 48px;
   }
-  @media (max-width: 600px) {
-    .fix { grid-template-columns: 1fr; text-align: center; }
+  .roadmap-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px; flex-wrap: wrap; gap: 12px;
+  }
+  .roadmap-header h3 { font-size: 22px; font-weight: 700; }
+  .roadmap-filters {
+    display: flex; gap: 8px;
+  }
+  .filter-btn {
+    padding: 6px 14px; border-radius: 20px; border: 1px solid #e5e5ea;
+    background: white; font-size: 12px; font-weight: 600; color: #86868b;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: #007aff; color: #007aff; }
+  .filter-btn.active { background: #007aff; color: white; border-color: #007aff; }
+
+  .roadmap-sub { font-size: 14px; color: #86868b; margin-bottom: 24px; }
+
+  /* Progress summary bar */
+  .progress-summary {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+    padding: 16px 20px; background: #f5f5f7; border-radius: 12px;
+  }
+  .progress-ring {
+    position: relative; width: 56px; height: 56px; flex-shrink: 0;
+  }
+  .progress-ring svg { transform: rotate(-90deg); }
+  .progress-ring-bg { fill: none; stroke: #e5e5ea; stroke-width: 6; }
+  .progress-ring-fill { fill: none; stroke: #34c759; stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 0.8s ease; }
+  .progress-ring-label {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 14px; font-weight: 700; color: #1d1d1f;
+  }
+  .progress-text { font-size: 14px; color: #6e6e73; }
+  .progress-text strong { color: #1d1d1f; }
+
+  /* Timeline track */
+  .timeline-track {
+    position: relative; padding-left: 28px;
+  }
+  .timeline-track::before {
+    content: ''; position: absolute; left: 11px; top: 0; bottom: 0;
+    width: 2px; background: #e5e5ea;
   }
 
-  .fix-number {
-    width: 32px; height: 32px; border-radius: 50%;
+  .timeline-phase {
+    margin-bottom: 32px; position: relative;
+  }
+  .timeline-phase:last-child { margin-bottom: 0; }
+
+  .phase-dot {
+    position: absolute; left: -28px; top: 2px;
+    width: 22px; height: 22px; border-radius: 50%; border: 2px solid white;
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700; color: white;
+    font-size: 10px; font-weight: 700; color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
   }
-  .fn-1 { background: #ff3b30; }
-  .fn-2 { background: #ff6b35; }
-  .fn-3 { background: #ff9500; }
-  .fn-4 { background: #5ac8fa; }
+  .dot-1 { background: #ff3b30; }
+  .dot-2 { background: #ff9500; }
+  .dot-3 { background: #007aff; }
 
-  .fix-text h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-  .fix-text p { font-size: 13px; color: #86868b; line-height: 1.5; }
-  .fix-text .fix-who { font-size: 11px; color: #aeaeb2; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
-
-  .fix-time {
-    text-align: right;
+  .phase-label {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
   }
-  @media (max-width: 600px) { .fix-time { text-align: center; } }
-  .fix-time .time-value { font-size: 18px; font-weight: 700; color: #1d1d1f; }
-  .fix-time .time-unit { font-size: 11px; color: #86868b; }
+  .phase-name { font-size: 16px; font-weight: 600; }
+  .phase-dates {
+    font-size: 12px; color: #86868b; background: #f5f5f7;
+    padding: 2px 10px; border-radius: 10px;
+  }
 
-  /* BEFORE/AFTER */
+  /* Task rows */
+  .task-list { display: flex; flex-direction: column; gap: 0; }
+
+  .task {
+    display: grid; grid-template-columns: 1fr 100px 90px 100px;
+    gap: 8px; padding: 14px 16px; border-radius: 10px;
+    align-items: center; transition: background 0.15s; cursor: default;
+  }
+  .task:hover { background: #f9f9fb; }
+  @media (max-width: 640px) {
+    .task { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  .task-name { font-size: 14px; font-weight: 500; }
+  .task-name small { display: block; font-size: 12px; color: #aeaeb2; font-weight: 400; margin-top: 1px; }
+
+  .task-owner { font-size: 12px; color: #6e6e73; text-align: center; }
+  .task-eta { font-size: 12px; color: #6e6e73; text-align: center; }
+
+  .task-status { text-align: center; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.2px;
+    cursor: pointer; transition: transform 0.15s; user-select: none;
+  }
+  .status-pill:hover { transform: scale(1.05); }
+  .status-pill .check { font-size: 12px; }
+
+  .status-done { background: #e8f8ed; color: #1b7d36; }
+  .status-in-progress { background: #fff4e5; color: #a35d00; }
+  .status-not-started { background: #f0f0f2; color: #6e6e73; }
+  .status-blocked { background: #ffe5e5; color: #d70015; }
+
+  .task-divider { height: 1px; background: #f0f0f2; margin: 0 16px; }
+
+  /* Column headers for tasks */
+  .task-header {
+    display: grid; grid-template-columns: 1fr 100px 90px 100px;
+    gap: 8px; padding: 0 16px 8px; border-bottom: 2px solid #e5e5ea;
+    margin-bottom: 4px;
+  }
+  .task-header span {
+    font-size: 11px; font-weight: 600; color: #aeaeb2;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .task-header span:not(:first-child) { text-align: center; }
+  @media (max-width: 640px) { .task-header { display: none; } }
+
+  /* ---- GANTT ---- */
+  .gantt-container {
+    background: white; border-radius: 20px; padding: 36px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 48px;
+    overflow-x: auto;
+  }
+  .gantt-container h3 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .gantt-container .gantt-sub { font-size: 14px; color: #86868b; margin-bottom: 24px; }
+
+  .gantt { min-width: 700px; }
+  .gantt-head {
+    display: grid; grid-template-columns: 180px repeat(4, 1fr);
+    border-bottom: 2px solid #e5e5ea; padding-bottom: 8px; margin-bottom: 4px;
+  }
+  .gantt-head span {
+    font-size: 11px; font-weight: 600; color: #aeaeb2;
+    text-transform: uppercase; letter-spacing: 0.3px; text-align: center;
+  }
+  .gantt-head span:first-child { text-align: left; }
+
+  .gantt-row {
+    display: grid; grid-template-columns: 180px repeat(4, 1fr);
+    padding: 6px 0; border-bottom: 1px solid #f5f5f7; align-items: center;
+    min-height: 36px;
+  }
+  .gantt-row:last-child { border-bottom: none; }
+  .gantt-label { font-size: 12px; font-weight: 500; padding-right: 8px; }
+  .gantt-label small { display: block; font-size: 10px; color: #aeaeb2; font-weight: 400; }
+  .gantt-cell { position: relative; height: 20px; }
+  .gantt-bar {
+    position: absolute; top: 3px; height: 14px; border-radius: 7px;
+    left: 3px; right: 3px; opacity: 0.9;
+  }
+  .bar-p1 { background: linear-gradient(90deg, #ff3b30, #ff6b35); }
+  .bar-p2 { background: linear-gradient(90deg, #ff9500, #ffb800); }
+  .bar-p3 { background: linear-gradient(90deg, #5ac8fa, #007aff); }
+  .bar-done { background: #34c759; }
+
+  /* Today marker */
+  .gantt-today { position: relative; }
+  .gantt-today::after {
+    content: 'TODAY'; position: absolute; top: -18px; left: 50%;
+    transform: translateX(-50%); font-size: 9px; font-weight: 700;
+    color: #ff3b30; letter-spacing: 0.5px;
+  }
+  .gantt-today::before {
+    content: ''; position: absolute; top: -6px; bottom: -200px;
+    left: 50%; width: 2px; background: #ff3b30; opacity: 0.3;
+  }
+
+  /* ---- BEFORE/AFTER ---- */
   .before-after {
     background: white; border-radius: 20px; padding: 36px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    margin-bottom: 48px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 48px;
   }
   .ba-title { font-size: 18px; font-weight: 600; margin-bottom: 24px; text-align: center; }
-
-  .ba-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  }
+  .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   @media (max-width: 600px) { .ba-grid { grid-template-columns: 1fr; } }
-
   .ba-item { text-align: center; }
   .ba-metric { font-size: 12px; color: #86868b; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 12px; }
-
   .ba-values { display: flex; align-items: center; justify-content: center; gap: 12px; }
   .ba-from { font-size: 28px; font-weight: 700; color: #ff3b30; }
   .ba-arrow { font-size: 18px; color: #aeaeb2; }
@@ -141,15 +257,12 @@
   /* BOTTOM LINE */
   .bottom-line {
     background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
-    border-radius: 20px; padding: 36px;
-    text-align: center; margin-bottom: 32px;
+    border-radius: 20px; padding: 36px; text-align: center; margin-bottom: 32px;
   }
   .bottom-line h3 { font-size: 18px; font-weight: 600; color: white; margin-bottom: 8px; }
   .bottom-line p { font-size: 14px; color: #aeaeb2; line-height: 1.6; max-width: 600px; margin: 0 auto; }
 
-  .footer {
-    text-align: center; font-size: 12px; color: #aeaeb2; padding: 16px;
-  }
+  .footer { text-align: center; font-size: 12px; color: #aeaeb2; padding: 16px; }
   .footer a { color: #007aff; text-decoration: none; }
 </style>
 </head>
@@ -159,7 +272,7 @@
 
   <div class="header">
     <h1>Can We Trust Our Numbers?</h1>
-    <div class="sub">A data quality assessment of Cofertility's marketing analytics pipeline</div>
+    <div class="sub">Data quality assessment and action plan &middot; Cofertility &middot; April 2025</div>
   </div>
 
   <!-- HERO -->
@@ -169,7 +282,6 @@
     <div class="big-context">Out of 34 signups over 6 months, 9 are either completely lost from our data or impossible to connect to the marketing channel that drove them. Every CAC number, every channel comparison, every budget decision is built on incomplete data.</div>
   </div>
 
-  <!-- THREE STATS -->
   <div class="stat-row">
     <div class="stat-card">
       <div class="stat-value red">35%</div>
@@ -194,43 +306,40 @@
       <div class="problem-icon icon-red">&#9888;</div>
       <div class="problem-text">
         <h4>We can't tell where 35% of visitors came from</h4>
-        <p>Over a third of website sessions are missing the tracking tags (UTM parameters) that tell us whether a visitor came from a Google ad, a Meta ad, email, or typed in the URL directly. These all get lumped into "direct," making paid channels look worse than they are.</p>
+        <p>Over a third of website sessions are missing the tracking tags that tell us whether a visitor came from Google, Meta, email, or typed in the URL. These all get lumped into "direct," making paid channels look worse than they are.</p>
       </div>
       <div class="problem-cost">
         <div class="cost-value">42</div>
         <div class="cost-label">sessions affected</div>
       </div>
     </div>
-
     <div class="problem">
       <div class="problem-icon icon-red">&#9888;</div>
       <div class="problem-text">
         <h4>The signup event is broken in 2 out of 3 places</h4>
-        <p>When someone signs up, the event fires from three different places in the code. One of them doesn't record who the user is, so those signups vanish from our data entirely. Another one is missing key fields. Only one of the three works correctly.</p>
+        <p>When someone signs up, the event fires from three different places in the code. One doesn't record who the user is (those signups vanish entirely). Another is missing key fields. Only one works correctly.</p>
       </div>
       <div class="problem-cost">
         <div class="cost-value">3</div>
         <div class="cost-label">users permanently lost</div>
       </div>
     </div>
-
     <div class="problem">
       <div class="problem-icon icon-red">&#9888;</div>
       <div class="problem-text">
         <h4>6 signups happened in sessions we can't see</h4>
-        <p>Six users went through the entire funnel and signed up, but their website sessions were never recorded. We know they converted (from the signup event), but we can't connect them to any ad campaign, landing page, or traffic source.</p>
+        <p>Six users went through the entire funnel and signed up, but their website sessions were never recorded. We know they converted, but can't connect them to any campaign or traffic source.</p>
       </div>
       <div class="problem-cost">
         <div class="cost-value">6</div>
         <div class="cost-label">conversions unattributable</div>
       </div>
     </div>
-
     <div class="problem">
       <div class="problem-icon icon-amber">&#9888;</div>
       <div class="problem-text">
         <h4>The same campaign shows up as 3 different campaigns</h4>
-        <p>Our egg-freezing campaign appears as "egg_freezing_q4," "egg-freezing-q4," and "EggFreezingQ4" in the data. Dashboards split what should be one campaign into three rows, each showing a fraction of the real traffic.</p>
+        <p>Our egg-freezing campaign appears as three different names in the data. Dashboards split what should be one campaign into three rows, each showing a fraction of the real traffic.</p>
       </div>
       <div class="problem-cost">
         <div class="cost-value">3x</div>
@@ -239,67 +348,201 @@
     </div>
   </div>
 
-  <!-- THE FIX -->
-  <div class="section-title">The Fix</div>
-  <div class="section-sub">Four actions, in order. The first two are urgent. All four can be completed within 4 weeks.</div>
-
-  <div class="fixes">
-    <div class="fix">
-      <div class="fix-number fn-1">1</div>
-      <div class="fix-text">
-        <h4>Move signup tracking to one place in the code</h4>
-        <p>Instead of three different code paths firing the signup event with different data, consolidate to a single backend endpoint that always records the user ID and plan type.</p>
-        <div class="fix-who">Owner: Engineering &middot; Recovers 3 lost users</div>
+  <!-- INTERACTIVE ROADMAP -->
+  <div class="roadmap-container">
+    <div class="roadmap-header">
+      <h3>Action Plan</h3>
+      <div class="roadmap-filters">
+        <button class="filter-btn active" onclick="filterTasks('all')">All</button>
+        <button class="filter-btn" onclick="filterTasks('engineering')">Engineering</button>
+        <button class="filter-btn" onclick="filterTasks('analytics')">Analytics</button>
+        <button class="filter-btn" onclick="filterTasks('growth')">Growth</button>
       </div>
-      <div class="fix-time">
-        <div class="time-value">3</div>
-        <div class="time-unit">days</div>
+    </div>
+    <div class="roadmap-sub">Click any status pill to toggle progress. Filter by team to see your workstream.</div>
+
+    <!-- Progress bar -->
+    <div class="progress-summary">
+      <div class="progress-ring">
+        <svg viewBox="0 0 56 56">
+          <circle class="progress-ring-bg" cx="28" cy="28" r="22"/>
+          <circle class="progress-ring-fill" id="progressCircle" cx="28" cy="28" r="22"
+                  stroke-dasharray="138.2" stroke-dashoffset="110.6"/>
+        </svg>
+        <div class="progress-ring-label" id="progressLabel">2/10</div>
+      </div>
+      <div class="progress-text">
+        <strong id="progressCount">2 of 10 tasks complete.</strong>
+        The dbt staging models and data tests are already deployed. 8 tasks remain across Engineering, Analytics, and Growth.
       </div>
     </div>
 
-    <div class="fix">
-      <div class="fix-number fn-2">2</div>
-      <div class="fix-text">
-        <h4>Capture tracking tags before they get stripped</h4>
-        <p>Save UTM parameters on the server the moment someone lands on the site, before redirects, ad blockers, or cross-domain navigation can remove them.</p>
-        <div class="fix-who">Owner: Engineering &middot; Cuts blind spot from 35% to under 10%</div>
-      </div>
-      <div class="fix-time">
-        <div class="time-value">2</div>
-        <div class="time-unit">weeks</div>
-      </div>
-    </div>
+    <!-- PHASE 1 -->
+    <div class="timeline-track" id="taskTrack">
 
-    <div class="fix">
-      <div class="fix-number fn-3">3</div>
-      <div class="fix-text">
-        <h4>Fix the session recording gap</h4>
-        <p>The server sometimes fails to log a session record even though the user's activity is tracked. Sync the two systems so every real visit has a session we can attribute.</p>
-        <div class="fix-who">Owner: Engineering &middot; Recovers 6 unattributable conversions</div>
-      </div>
-      <div class="fix-time">
-        <div class="time-value">1</div>
-        <div class="time-unit">week</div>
-      </div>
-    </div>
+      <div class="timeline-phase" data-phase="1">
+        <div class="phase-dot dot-1">1</div>
+        <div class="phase-label">
+          <span class="phase-name">Stop the Bleeding</span>
+          <span class="phase-dates">Week 1 to 2</span>
+        </div>
 
-    <div class="fix">
-      <div class="fix-number fn-4">4</div>
-      <div class="fix-text">
-        <h4>Standardize campaign naming with a URL builder</h4>
-        <p>Give the marketing team a simple tool that generates campaign links with consistent naming. No more manual URL tagging, no more format mismatches.</p>
-        <div class="fix-who">Owner: Analytics Eng. + Marketing &middot; Eliminates campaign fragmentation</div>
+        <div class="task-header">
+          <span>Task</span><span>Owner</span><span>Timeline</span><span>Status</span>
+        </div>
+        <div class="task-list">
+          <div class="task" data-team="engineering">
+            <div class="task-name">Move signup tracking to one backend endpoint<small>Consolidate 3 call sites into 1. Recovers 3 lost users.</small></div>
+            <div class="task-owner">Engineering</div>
+            <div class="task-eta">3 days</div>
+            <div class="task-status"><span class="status-pill status-not-started" onclick="toggleStatus(this)"><span class="check">&#9675;</span> Not Started</span></div>
+          </div>
+          <div class="task-divider"></div>
+          <div class="task" data-team="engineering">
+            <div class="task-name">Block deploys that fire signup with missing user ID<small>CI/CD validation. Prevents future data loss at the source.</small></div>
+            <div class="task-owner">Engineering</div>
+            <div class="task-eta">1 day</div>
+            <div class="task-status"><span class="status-pill status-not-started" onclick="toggleStatus(this)"><span class="check">&#9675;</span> Not Started</span></div>
+          </div>
+          <div class="task-divider"></div>
+          <div class="task" data-team="analytics">
+            <div class="task-name">Deploy data cleanup layer (normalize names, deduplicate)<small>Fixes campaign naming and conversion duplicates in the data pipeline.</small></div>
+            <div class="task-owner">Analytics Eng.</div>
+            <div class="task-eta">3 days</div>
+            <div class="task-status"><span class="status-pill status-done" onclick="toggleStatus(this)"><span class="check">&#10003;</span> Done</span></div>
+          </div>
+          <div class="task-divider"></div>
+          <div class="task" data-team="analytics">
+            <div class="task-name">Set up automated data quality alerts<small>Automated checks that flag when data quality degrades.</small></div>
+            <div class="task-owner">Analytics Eng.</div>
+            <div class="task-eta">2 days</div>
+            <div class="task-status"><span class="status-pill status-done" onclick="toggleStatus(this)"><span class="check">&#10003;</span> Done</span></div>
+          </div>
+        </div>
       </div>
-      <div class="fix-time">
-        <div class="time-value">2</div>
-        <div class="time-unit">days</div>
+
+      <!-- PHASE 2 -->
+      <div class="timeline-phase" data-phase="2">
+        <div class="phase-dot dot-2">2</div>
+        <div class="phase-label">
+          <span class="phase-name">Fix the Foundation</span>
+          <span class="phase-dates">Week 2 to 4</span>
+        </div>
+
+        <div class="task-header">
+          <span>Task</span><span>Owner</span><span>Timeline</span><span>Status</span>
+        </div>
+        <div class="task-list">
+          <div class="task" data-team="engineering">
+            <div class="task-name">Capture tracking tags server-side before they get stripped<small>Saves UTM parameters at first page load. Cuts blind spot from 35% to under 10%.</small></div>
+            <div class="task-owner">Engineering</div>
+            <div class="task-eta">2 weeks</div>
+            <div class="task-status"><span class="status-pill status-not-started" onclick="toggleStatus(this)"><span class="check">&#9675;</span> Not Started</span></div>
+          </div>
+          <div class="task-divider"></div>
+          <div class="task" data-team="engineering">
+            <div class="task-name">Fix the session recording gap<small>Sync client and server so every visit has a trackable session. Recovers 6 conversions.</small></div>
+            <div class="task-owner">Engineering</div>
+            <div class="task-eta">1 week</div>
+            <div class="task-status"><span class="status-pill status-not-started" onclick="toggleStatus(this)"><span class="check">&#9675;</span> Not Started</span></div>
+          </div>
+          <div class="task-divider"></div>
+          <div class="task" data-team="analytics">
+            <div class="task-name">Create a campaign link builder for the marketing team<small>Simple tool that generates correctly formatted tracking links. No more naming mismatches.</small></div>
+            <div class="task-owner">Analytics Eng.</div>
+            <div class="task-eta">2 days</div>
+            <div class="task-status"><span class="status-pill status-not-started" onclick="toggleStatus(this)"><span class="check">&#9675;</span> Not Started</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="timeline-phase" data-phase="3">
+        <div class="phase-dot dot-3">3</div>
+        <div class="phase-label">
+          <span class="phase-name">Measure with Confidence</span>
+          <span class="phase-dates">Week 4 to 6</span>
+        </div>
+
+        <div class="task-header">
+          <span>Task</span><span>Owner</span><span>Timeline</span><span>Status</span>
+        </div>
+        <div class="task-list">
+          <div class="task" data-team="analytics">
+            <div class="task-name">Re-run channel efficiency analysis on clean data<small>With instrumentation fixed, recalculate CAC per channel with complete attribution.</small></div>
+            <div class="task-owner">Analytics Eng.</div>
+            <div class="task-eta">2 days</div>
+            <div class="task-status"><span class="status-pill status-not-started" onclick="toggleStatus(this)"><span class="check">&#9675;</span> Not Started</span></div>
+          </div>
+          <div class="task-divider"></div>
+          <div class="task" data-team="growth">
+            <div class="task-name">Run Meta holdback test to measure real impact<small>Before cutting Meta spend, test whether email conversions dry up without Meta awareness.</small></div>
+            <div class="task-owner">Growth + AE</div>
+            <div class="task-eta">2 weeks</div>
+            <div class="task-status"><span class="status-pill status-not-started" onclick="toggleStatus(this)"><span class="check">&#9675;</span> Not Started</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GANTT -->
+  <div class="gantt-container">
+    <h3>Timeline View</h3>
+    <div class="gantt-sub">6-week plan. Red = urgent fixes. Orange = foundation. Blue = optimization.</div>
+
+    <div class="gantt">
+      <div class="gantt-head">
+        <span></span>
+        <span>Week 1</span><span>Week 2</span><span>Week 3 to 4</span><span>Week 5 to 6</span>
+      </div>
+
+      <div class="gantt-row">
+        <div class="gantt-label">Consolidate signup event<small>Engineering</small></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-done"></div></div>
+        <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Data cleanup + alerts<small>Analytics Eng.</small></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-done"></div></div>
+        <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Server-side UTM capture<small>Engineering</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-p1"></div></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-p1"></div></div>
+        <div class="gantt-cell"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Fix session recording<small>Engineering</small></div>
+        <div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-p2"></div></div>
+        <div class="gantt-cell"></div><div class="gantt-cell"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Campaign link builder<small>Analytics + Marketing</small></div>
+        <div class="gantt-cell"></div><div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-p2"></div></div>
+        <div class="gantt-cell"></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Re-run CAC analysis<small>Analytics Eng.</small></div>
+        <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-p3"></div></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Meta holdback test<small>Growth + AE</small></div>
+        <div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div>
+        <div class="gantt-cell"><div class="gantt-bar bar-p3"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- BEFORE / AFTER -->
+  <!-- BEFORE/AFTER -->
   <div class="before-after">
-    <div class="ba-title">After These Fixes</div>
+    <div class="ba-title">After These Fixes (Week 6)</div>
     <div class="ba-grid">
       <div class="ba-item">
         <div class="ba-metric">Attributable Conversions</div>
@@ -331,15 +574,93 @@
   <!-- BOTTOM LINE -->
   <div class="bottom-line">
     <h3>The Bottom Line</h3>
-    <p>We spent $38,900 on paid ads over the last 6 months, but we can't confidently say which channels drove conversions. Meta shows zero signups, but that might be a tracking failure, not a performance failure. Before making any budget decisions, we need to fix the instrumentation. Four weeks of engineering work gives us the data foundation to optimize with confidence.</p>
+    <p>We spent $38,900 on paid ads over the last 6 months, but we can't confidently say which channels drove conversions. Meta shows zero signups, but that might be a tracking failure, not a performance failure. Six weeks of focused work across Engineering and Analytics gives us the foundation to optimize with confidence.</p>
   </div>
 
   <div class="footer">
     Prepared by Cansu Kaya &middot; April 2025<br>
-    <a href="https://github.com/satine7/cofertility-dbt-project">Working dbt project with all fixes implemented</a>
+    <a href="https://github.com/satine7/cofertility-dbt-project">Working dbt project with data pipeline fixes</a>
   </div>
 
 </div>
+
+<script>
+// Toggle task status on click
+function toggleStatus(pill) {
+  const states = [
+    { cls: 'status-not-started', icon: '\u25CB', label: 'Not Started' },
+    { cls: 'status-in-progress', icon: '\u25D4', label: 'In Progress' },
+    { cls: 'status-done', icon: '\u2713', label: 'Done' },
+  ];
+
+  let current = 0;
+  states.forEach((s, i) => { if (pill.classList.contains(s.cls)) current = i; });
+  const next = (current + 1) % states.length;
+
+  pill.className = 'status-pill ' + states[next].cls;
+  pill.innerHTML = '<span class="check">' + states[next].icon + '</span> ' + states[next].label;
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const tasks = document.querySelectorAll('.task');
+  const total = tasks.length;
+  let done = 0;
+  tasks.forEach(t => {
+    const pill = t.querySelector('.status-pill');
+    if (pill && pill.classList.contains('status-done')) done++;
+  });
+
+  // Update ring
+  const circ = 138.2;
+  const offset = circ * (1 - done / total);
+  document.getElementById('progressCircle').style.strokeDashoffset = offset;
+  document.getElementById('progressLabel').textContent = done + '/' + total;
+  document.getElementById('progressCount').textContent = done + ' of ' + total + ' tasks complete.';
+}
+
+// Filter by team
+function filterTasks(team) {
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const tasks = document.querySelectorAll('.task');
+  const dividers = document.querySelectorAll('.task-divider');
+
+  if (team === 'all') {
+    tasks.forEach(t => t.style.display = '');
+    dividers.forEach(d => d.style.display = '');
+    return;
+  }
+
+  const teamMap = {
+    engineering: 'engineering',
+    analytics: 'analytics',
+    growth: 'growth',
+  };
+
+  tasks.forEach(t => {
+    const taskTeam = t.getAttribute('data-team');
+    t.style.display = taskTeam === teamMap[team] ? '' : 'none';
+  });
+
+  // Hide dividers next to hidden tasks
+  dividers.forEach(d => {
+    const prev = d.previousElementSibling;
+    const next = d.nextElementSibling;
+    if ((prev && prev.style.display === 'none') || (next && next.style.display === 'none')) {
+      d.style.display = 'none';
+    } else {
+      d.style.display = '';
+    }
+  });
+}
+
+// Init
+updateProgress();
+</script>
 
 </body>
 </html>
