@@ -24,9 +24,9 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     text-align: center; margin-bottom: 24px;
   }
-  .hero .big-number { font-size: 72px; font-weight: 700; color: #ff3b30; line-height: 1; }
-  .hero .big-label { font-size: 18px; color: #1d1d1f; margin-top: 8px; font-weight: 500; }
-  .hero .big-context { font-size: 14px; color: #86868b; margin-top: 8px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+  .hero .big-number { font-size: 42px; font-weight: 700; color: #1d1d1f; line-height: 1.2; }
+  .hero .big-label { font-size: 15px; color: #6e6e73; margin-top: 8px; font-weight: 400; }
+  .hero .big-context { font-size: 14px; color: #86868b; margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
   /* STAT ROW */
   .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
@@ -35,9 +35,9 @@
     background: white; border-radius: 16px; padding: 28px 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center;
   }
-  .stat-card .stat-value { font-size: 40px; font-weight: 700; line-height: 1; }
-  .stat-card .stat-value.red { color: #ff3b30; }
-  .stat-card .stat-value.amber { color: #ff9500; }
+  .stat-card .stat-value { font-size: 26px; font-weight: 700; line-height: 1; color: #1d1d1f; }
+  .stat-card .stat-value.red { color: #1d1d1f; }
+  .stat-card .stat-value.amber { color: #1d1d1f; }
   .stat-card .stat-label { font-size: 13px; color: #86868b; margin-top: 8px; line-height: 1.4; }
 
   /* SECTION */
@@ -62,7 +62,7 @@
   .problem-text p { font-size: 13px; color: #86868b; line-height: 1.5; }
   .problem-cost { text-align: right; flex-shrink: 0; }
   @media (max-width: 600px) { .problem-cost { text-align: center; } }
-  .problem-cost .cost-value { font-size: 22px; font-weight: 700; color: #ff3b30; }
+  .problem-cost .cost-value { font-size: 20px; font-weight: 700; color: #1d1d1f; }
   .problem-cost .cost-label { font-size: 11px; color: #86868b; text-transform: uppercase; letter-spacing: 0.3px; }
 
   /* ---- INTERACTIVE ROADMAP ---- */
@@ -250,9 +250,9 @@
   .ba-item { text-align: center; }
   .ba-metric { font-size: 12px; color: #86868b; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 12px; }
   .ba-values { display: flex; align-items: center; justify-content: center; gap: 12px; }
-  .ba-from { font-size: 28px; font-weight: 700; color: #ff3b30; }
+  .ba-from { font-size: 24px; font-weight: 700; color: #86868b; }
   .ba-arrow { font-size: 18px; color: #aeaeb2; }
-  .ba-to { font-size: 28px; font-weight: 700; color: #34c759; }
+  .ba-to { font-size: 24px; font-weight: 700; color: #1d1d1f; }
 
   /* BOTTOM LINE */
   .bottom-line {
@@ -277,23 +277,23 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="big-number">1 in 4</div>
-    <div class="big-label">conversions cannot be attributed to a channel</div>
-    <div class="big-context">Out of 34 signups over 6 months, 9 are either completely lost from our data or impossible to connect to the marketing channel that drove them. Every CAC number, every channel comparison, every budget decision is built on incomplete data.</div>
+    <div class="big-number">34 signups recorded over 6 months.<br>9 of them have no channel attribution.</div>
+    <div class="big-label">Sep 2024 to Feb 2025 &middot; events, sessions, and conversions tables</div>
+    <div class="big-context">6 conversions occurred in sessions the system never logged. 3 conversions fired a signup event that didn't record the user ID. The remaining 25 are attributable, but 35% of all sessions are missing UTM parameters, so even those have gaps. Below is what we found and a plan to fix it.</div>
   </div>
 
   <div class="stat-row">
     <div class="stat-card">
-      <div class="stat-value red">35%</div>
-      <div class="stat-label">of sessions have no<br>channel attribution</div>
+      <div class="stat-value">42 / 120</div>
+      <div class="stat-label">sessions missing UTM<br>source, medium, and campaign</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value red">3</div>
-      <div class="stat-label">users permanently lost<br>from conversion data</div>
+      <div class="stat-value">3 call sites</div>
+      <div class="stat-label">fire the signup event<br>with different schemas</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value amber">$38.9K</div>
-      <div class="stat-label">in ad spend allocated<br>using unreliable data</div>
+      <div class="stat-value">3 formats</div>
+      <div class="stat-label">for the same campaign name<br>(egg_freezing_q4)</div>
     </div>
   </div>
 
@@ -573,8 +573,8 @@
 
   <!-- BOTTOM LINE -->
   <div class="bottom-line">
-    <h3>The Bottom Line</h3>
-    <p>We spent $38,900 on paid ads over the last 6 months, but we can't confidently say which channels drove conversions. Meta shows zero signups, but that might be a tracking failure, not a performance failure. Six weeks of focused work across Engineering and Analytics gives us the foundation to optimize with confidence.</p>
+    <h3>Summary</h3>
+    <p>$38,900 was spent on paid acquisition over 6 months. The current data cannot reliably attribute conversions to channels: Meta shows zero signups, which could reflect a tracking gap rather than actual performance. The fixes above require approximately 6 weeks of engineering and analytics work. Once complete, channel efficiency analysis can be re-run on reliable data.</p>
   </div>
 
   <div class="footer">
