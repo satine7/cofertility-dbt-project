@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_events
+    description: "Cleaned Amplitude events with JSON properties extracted into typed columns. Retry events filtered out."
+    columns:
+      - name: session_id
+        description: "Amplitude session identifier"
+        tests:
+          - not_null
+      - name: event_type
+        description: "Name of the event"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['page_viewed', 'cta_clicked', 'prescreener_started', 'prescreener_completed', 'account_created', 'signup_completed']
+      - name: member_type
+        tests:
+          - accepted_values:
+              values: ['ip', 'sm']
+
+  - name: stg_sessions
+    description: "Cleaned web sessions with normalized UTM parameters and derived channel_group."
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_conversions
+    description: "Deduplicated conversions. One row per user, earliest conversion kept."
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: plan_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['split', 'freeze', 'keep']

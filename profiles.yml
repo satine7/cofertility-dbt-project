@@ -1,0 +1,6 @@
+cofertility:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: cofertility.duckdb

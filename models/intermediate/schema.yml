@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: int_session_user_mapping
+    description: "Bridge table linking session_id to user_id via events. Preserves orphan sessions as 'unattributable'."
+    columns:
+      - name: session_id
+        tests:
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+
+  - name: int_user_first_touch
+    description: "First-touch attribution spine. One row per user with their first observed session and channel."
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+
+  - name: int_funnel_events_aggregated
+    description: "One row per session with funnel step timestamps and boolean flags."
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null

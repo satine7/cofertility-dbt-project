@@ -1,0 +1,16 @@
+name: 'cofertility_funnel'
+version: '1.0.0'
+
+profile: 'cofertility'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+seeds:
+  cofertility_funnel:
+    +schema: raw

@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: fct_session_funnel
+    description: >
+      Primary analytical table: one row per session with full funnel progression,
+      session-level and user-level attribution, and conversion outcome.
+      Serves both pre-signup (anonymous/session) and post-signup (user) analysis.
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_channel_performance
+    description: >
+      Channel performance aggregation: one row per channel per month.
+      Includes sessions, funnel step counts, conversions, spend, CAC, CPC,
+      and funnel drop-off rates. Canonical source for marketing reporting.
